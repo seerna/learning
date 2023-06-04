@@ -50,6 +50,9 @@ my_img5 = ImageTk.PhotoImage(Image.open("images/img5.jpeg"))
 
 image_list = [my_img1, my_img2, my_img3, my_img4, my_img5]        
 
+status_bar = Label(root, text="Image 1 of 5")
+status_bar.grid(row=2,column=2, columnspan=3)
+
 my_label = Label(root, image=image_list[0])
 my_label.grid(row= 1, column=0, columnspan=3)
 
