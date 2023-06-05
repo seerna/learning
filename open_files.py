@@ -6,9 +6,20 @@ root = Tk()
 root.title('')
 # root.iconbitmap('')
 
-root.filename = filedialog.askopenfilename(
-    initialdir="~/Documents/Learning \code/Python/tkinter/freeCodeCamp_tutorial/images/",
-    title="Pick a file", filetypes=(("jpg files", "*.png"),("jpeg files","*.jpeg"),("all files","*.*")
-    )
-)
+def open_a_file():
+    root.filename = filedialog.askopenfilename(
+        initialdir="~/Documents/Learning \Code/tkinter/freeCodeCamp_tutorial/images/",
+        title="Pick a file", filetypes=(
+            ("jpg files", "*.jpg"),
+            ("jpeg files","*.jpeg"),
+            ("all files","*.*"),
+            ),
+        )
+    global a_label, an_image, a_label_image
+    a_label = Label(root, text=root.filename).pack()
+    an_image = ImageTk.PhotoImage(Image.open(root.filename))
+    a_label_image = Label(root, image=an_image).pack()
+
+btn = Button(root, text="Select a file", command=open_a_file).pack()
+
 root.mainloop()
