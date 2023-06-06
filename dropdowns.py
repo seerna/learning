@@ -11,8 +11,8 @@ def clicked():
     selection = Label(root, text=dropdown.get()).pack()
 
 options = [
-    'prick this',
-    'Not! Tis',
+    'Pick this',
+    'Not! This',
     'Oh yeah here',
     'keep it',
     'add stuff'
@@ -21,7 +21,7 @@ options = [
 dropdown = StringVar()
 dropdown.set(options[0])
 
-# Note the *, it's done so options is taken as items and not an entire list
+# Note the *, it's done so options are taken as items and not an entire list
 omg_drop = OptionMenu(root, dropdown, *options)
 omg_drop.pack()
 
