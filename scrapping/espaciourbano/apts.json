@@ -1,35 +1,42 @@
 {
-    "Código": "1333497",
-    "Tipo propiedad": "Oficina",
+    "Código": "1245462",
+    "Tipo propiedad": "Finca",
     "Tipo contrato": "EN ARRIENDO ",
-    "Precio": "2,500,000",
-    "Descripción": "Arriendo oficina de 37 m2. Con parqueadero cubierto. Cuenta con 1 baño, cocineta, aire acondicionado, muy iluminada. Zonas comunes: auditorio, 2 salones de juntas, zonas de descanso, portería 24h, comedores, baños y baños para discapacitados. Cerca de la glorieta que une a los municipios de Envigado, Sabaneta e Itagüí.Contáctanos en los teléfonos 3014379133 - 3015271896 - 3666249 correo laura@londonoyjaramillo.com o en nuestra página web www.londonoyjaramillo.com",
-    "Ciudad": "Envigado",
-    "Barrio / Sector": "Primavera",
-    "Número de niveles": "1",
-    "Tipo de energia": "Normal",
-    "Tipo de puerta": "",
-    "Tipo de piso": "",
-    "Baños": "1",
-    "Parqueaderos": "1",
+    "Precio": "950,000",
+    "Descripción": "Arriendo Casa unifamiliar de Recreo en Cauca Viejo, capacidad 16 personas, tiene 5 alcobas y 4 baños, dos salones, comedor cocina abierta, BBQ, Piscina,  Valor noche en Semana 700 mil pesos, la empleada 70 mil pesos el díaValor noche de Sábado a domingo 950 mil pesos la noche  la empleada 70 mil dia.Valor noche en puentes 1.050.000, la noche y 70 mil pesos la empleada por día.",
+    "Ciudad": "Cauca Viejo",
+    "Barrio / Sector": "Parque",
+    "Estrato": "6",
+    "Area total": "360 M2.",
+    "Area bruta *": "360 M2. aproximadamente",
+    "Número de niveles": "2",
+    "Alcobas familiares": "5",
+    "Baños familiares": "4",
+    "Tipo de cocina": "Integral",
+    "Tipo de pisos": "Baldosa comun",
+    "Parqueaderos": "1 + cuarto útil ()",
+    "Otras comodidades": "",
     "Comodidades": {
         "Comodidades interior": [
-            "Cocineta",
-            "Aire acondicionado",
-            "Alarma",
-            "Malacate / ascensor carga",
-            "Zona para descargue",
+            "Balcón"
+        ],
+        "Coopropiedad": [
+            "Unidad cerrada / conjunto",
+            "Porteria 24/7",
+            "Zona BBQ",
+            "Juegos infantiles",
             "Parqueadero visitantes",
+            "Cancha polideportiva",
+            "Piscina",
             "Camaras CCTV"
         ]
     },
     "Agencia": {
-        "Agente": "Londoño & Jaramilllo Inmobilia",
-        "Nombre agencia": "LONDOÑO & JARAMILLO INMOBILIARIA",
+        "Agente": "Gloria Ivonne Piedrahita Duran",
+        "Nombre agencia": "UNION INMOBILIARIA",
         "Contacto agente": [
-            "(+57) 604 366 6249",
-            "3014379133",
-            "(+57) 3015271896"
+            "(+574) 6042048931",
+            "(+57) 3117643254"
         ]
     }
 }

@@ -66,23 +66,25 @@ def fetch_amenities(soup):
     container = soup.find('div', class_='col-lg-4')
     
     for element in container.find_all(['h3', 'p']):
-        if element.name == 'h3':
-            current_key = element.text.strip()
-            amenities[current_key] = []
-        elif element.name == 'p' and current_key:
-            amenities[current_key].append(element.find('span').text.strip())
+        if element is not None:
+            if element.name == 'h3':
+                current_key = element.text.strip()
+                amenities[current_key] = []
+            elif element.name == 'p' and current_key:
+                amenities[current_key].append(element.find('span').text.strip())
 
     return amenities
 
 def fetch_table(soup):
     table = soup.find(class_="table table-striped")
     data = {}
-    for row in table.find_all('tr'):
-        cells = row.find_all('td')
-        if len(cells) == 2:
-            key = cells[0].text.strip()
-            value = cells[1].text.strip()
-            data[key] = value
+    if table is not None:
+        for row in table.find_all('tr'):
+            cells = row.find_all('td')
+            if len(cells) == 2:
+                key = cells[0].text.strip()
+                value = cells[1].text.strip()
+                data[key] = value
     return data
 
 def fetch_agency(soup):
@@ -108,13 +110,16 @@ def secure_data(data, filename):
     print('Data saved to', filename)
 
 # Outline
-def main():
-    url = 'https://www.espaciourbano.com/Ficha.asp?xId=1333497'
+def main(url):
     html_content = connection(url)
     soup = make_soup(html_content)
     data = fetch_data(soup)
-    filename = "apts.json"
-    secure_data(data, filename)
+    
+    # Uncomment to save data in a .json
+    # filename = "apts.json"
+    # secure_data(data, filename)
+    return data
+    
 
 # Run
 if __name__ == "__main__":
