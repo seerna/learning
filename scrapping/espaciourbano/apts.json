@@ -1,0 +1,35 @@
+{
+    "Código": "1333497",
+    "Tipo propiedad": "Oficina",
+    "Tipo contrato": "EN ARRIENDO ",
+    "Precio": "2,500,000",
+    "Descripción": "Arriendo oficina de 37 m2. Con parqueadero cubierto. Cuenta con 1 baño, cocineta, aire acondicionado, muy iluminada. Zonas comunes: auditorio, 2 salones de juntas, zonas de descanso, portería 24h, comedores, baños y baños para discapacitados. Cerca de la glorieta que une a los municipios de Envigado, Sabaneta e Itagüí.Contáctanos en los teléfonos 3014379133 - 3015271896 - 3666249 correo laura@londonoyjaramillo.com o en nuestra página web www.londonoyjaramillo.com",
+    "Ciudad": "Envigado",
+    "Barrio / Sector": "Primavera",
+    "Número de niveles": "1",
+    "Tipo de energia": "Normal",
+    "Tipo de puerta": "",
+    "Tipo de piso": "",
+    "Baños": "1",
+    "Parqueaderos": "1",
+    "Comodidades": {
+        "Comodidades interior": [
+            "Cocineta",
+            "Aire acondicionado",
+            "Alarma",
+            "Malacate / ascensor carga",
+            "Zona para descargue",
+            "Parqueadero visitantes",
+            "Camaras CCTV"
+        ]
+    },
+    "Agencia": {
+        "Agente": "Londoño & Jaramilllo Inmobilia",
+        "Nombre agencia": "LONDOÑO & JARAMILLO INMOBILIARIA",
+        "Contacto agente": [
+            "(+57) 604 366 6249",
+            "3014379133",
+            "(+57) 3015271896"
+        ]
+    }
+}
