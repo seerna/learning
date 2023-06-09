@@ -3,12 +3,12 @@ import requests
 from tkinter import *
 
 # Definning the window (root)
-def set_root():
+def set_root(category):
     root = Tk()
     root.title('')
     # root.iconbitmap('')
     # root.geometry('400x150')
-    root.configure(background='green')
+    root.configure(background=category_color(category))
 
     return root
 
@@ -20,7 +20,7 @@ def loop(root):
 # Making an API requst and storing some specifics in variables
 def api_request():
     try:
-        api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=89129&distance=5&API_KEY=064B3608-B519-47DB-ACA6-D369D8A8A418")
+        api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=75248&distance=300&API_KEY=064B3608-B519-47DB-ACA6-D369D8A8A418")
         api = json.loads(api_request.content)
         city = api[0]['ReportingArea']
         quality = api[0]['AQI']
@@ -36,14 +36,27 @@ def labeling(root, city, quality, category):
         root,
         text= city + ", Air Quality " + str(quality) + " - " + category,
         font= ('Helvetica', 19),
-        background='green'
+        background=category_color(category)
         )
     main_lbl.grid(row=0, column=0, columnspan=3)
 
+def category_color(category):
+    dict = {
+        'Good' : '#0C0',
+        'Moderate' : '#FFFF00',
+        'Unhealthy I' : '#FF9900',
+        'Unhealthy II' : '#FF0000',
+        'Very Unhealthy' : '#990066',
+        'Hazardous' : '#660000',
+        'Unavailable' : '#808080'
+    }
+    
+    return dict[category]
+
 # Running
 def main():
-    root = set_root()
     city, quality, category = api_request()
+    root = set_root(category)
     labeling(root, city, quality, category)
     loop(root)
 
