@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 '''TO DO
 - [] Way to download images (should be done uppon request)
-- [] Another script to scrap all urls
+- [x] Another script to scrap all urls
 - [] Get something to do with the data'''
 
 # Pending to learn about classes and nest everything appropriatedly 
@@ -52,7 +52,7 @@ def fetch_type_price(soup):
     price_element = soup.find('div', class_='text-center').h3.find_next('h3')
     price_text = price_element.text.strip()
     price = price_text.split('$')[1]
-    transaction = price_text.split('$')[0]
+    transaction = price_text.split(' $')[0]
     return transaction, price
 
 def fetch_description(soup):
@@ -116,7 +116,7 @@ def main(url):
     data = fetch_data(soup)
     
     # Uncomment to save data in a .json
-    # filename = "apts.json"
+    # filename = "property_data.json"
     # secure_data(data, filename)
     return data
     
