@@ -119,7 +119,7 @@ def update():
     connection = sqlite3.connect('address_book.db')
     cursor = connection.cursor()
 
-    record_id = ``edit_ent_editor.get()
+    record_id = edit_ent_editor.get()
 
     cursor.execute("""UPDATE addresses SET
         first_name = :first,
