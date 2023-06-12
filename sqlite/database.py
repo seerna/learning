@@ -43,12 +43,11 @@ def create_table():
 def insert_data(data):
     open_connection()
     cursor.execute("INSERT INTO customers VALUES (?,?,?,?)", data)
-    print('Data added')
     close_connection()
 
-def insertmany_data(many_customers):
+def insertmany_data(data):
     open_connection()
-    cursor.executemany("INSERT INTO customers VALUES (?,?,?,?)", many_customers)
+    cursor.executemany("INSERT INTO customers VALUES (?,?,?,?)", data)
     print('Many Data added')
     close_connection()
 
@@ -72,9 +71,9 @@ def show_rowid():
         print(item)
     close_connection()
 
-def search_by():
+def search_by_rowid(rowid):
     open_connection()
-    cursor.execute("SELECT * FROM customers WHERE email LIKE '%wgovt.com'")
+    cursor.execute("SELECT rowid, * FROM customers WHERE rowid = (?)", rowid)
     items = cursor.fetchall()
     for item in items:
         print(item)
@@ -87,11 +86,10 @@ def update_record():
     """)
     close_connection()
 
-def delete_record():
+def delete_record(id):
     open_connection()
     cursor.execute("""DELETE FROM customers 
-                    WHERE rowid = '2'
-    """)
+                    WHERE rowid = (?)""", id)
     close_connection()
 
 def order_by():
@@ -139,8 +137,8 @@ def main():
     # search_by()
     # delete_table()
     
-    show_rowid()
-
+    # show_rowid()
+    pass
 
 if __name__ == "__main__":
     main()
