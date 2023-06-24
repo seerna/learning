@@ -22,6 +22,7 @@ def main():
     for url in urls:
         try:
             data.append(scrappy_info.main(url))
+            print(f"Scrapped {len(data)}/{len(urls)}.")
         except AttributeError:
             continue
 
