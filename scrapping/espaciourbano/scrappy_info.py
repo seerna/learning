@@ -1,5 +1,6 @@
 import json
 import requests
+from time import perf_counter
 from bs4 import BeautifulSoup
 
 '''TO DO
@@ -111,9 +112,12 @@ def secure_data(data, filename):
 
 # Outline
 def main(url):
+    t1_start = perf_counter()
     html_content = connection(url)
     soup = make_soup(html_content)
     data = fetch_data(soup)
+    t2_stop = perf_counter()
+    print(" ", t2_stop - t1_start)
     
     # Uncomment to save data in a .json
     # filename = "property_data.json"

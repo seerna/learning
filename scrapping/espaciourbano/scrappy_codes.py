@@ -1,7 +1,10 @@
 import json
 import requests
 import scrappy_urls
+from time import perf_counter
 from bs4 import BeautifulSoup
+
+# TO-DO Continue adding time measurements. Implement threading or async
 
 def connection(url):
     response = requests.get(url)
@@ -27,9 +30,15 @@ def fetch_codes(soup):
     areas_links = get_areas(soup)
     
     for areas in areas_links:
+        t1_start_loop = perf_counter()
+
         codes_list = get_everything(areas)
-        print(f"  - Appending {len(codes_list)} entries.")
         codes.append(codes_list)
+
+        t2_stop_loop = perf_counter()
+        time = t2_stop_loop - t1_start_loop
+
+        print(f"  - Appending {len(codes_list)} entries", f"in {0:.10f}".format(time))
 
     for sublist in codes:
         data.extend(sublist)
@@ -71,26 +80,35 @@ def get_entire_area(area):
     
 
     while current_page < page_amount:
+        print(f"    - {current_page + 1} / {page_amount}")
+
         new_url = "https://www.espaciourbano.com/" + area + "&offset=" + str(offset)
-        new_url = new_url.replace("%20", "+")
+        new_url = new_url.replace("%20", "+") # We need to correct this thing
+
         html_content = connection(new_url)
         soup = make_soup(html_content)
-        # TO DO: Find the page numbers, and write the function to iterate and:
-        # 1. append codes
-        # 2. go to next page
         property_links = soup.find_all(class_="btn btn-primary")
-        print(f"    - {current_page + 1} / {page_amount}")
+
+        t1_start_loop = perf_counter()
+
+        inputed_codes = 1
 
         for item in property_links:
             link = item['href']
             if '=' in link:
                 link = link.replace(" ", "").split("=")[1]
                 codes.append(link)
+                inputed_codes += 1
+                if inputed_codes == 25:
+                    print("      ·")
             else: 
                 continue
-        
+
         current_page += 1
         offset = 50 * current_page
+        t2_stop_loop = perf_counter()
+        time = t2_stop_loop - t1_start_loop
+        print(f"     +{0:.10f}".format(time))
 
     print("Finished", current_area)
     return codes
@@ -108,7 +126,7 @@ def main():
 
     for url in urls:
         print("\nCurrent URL: ", url)
-
+        
         html_content = connection(url)
         soup = make_soup(html_content)
         codes.append(fetch_codes(soup))

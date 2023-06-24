@@ -48,14 +48,24 @@ def secure_data(data, filename):
         json.dump(data, file, ensure_ascii=False, indent=4)
     print('Data saved to', filename)
 
+def filter_urls(data):
+    filtered_data = []
+    for link in data:
+        if "listado_arriendos" in link:
+            filtered_data.append(link)
+    
+    return filtered_data
+
 # Outline
 def main():
     url = 'https://www.espaciourbano.com/'
     html_content = connection(url)
     soup = make_soup(html_content)
     data = fetch_data(soup)
+    data = filter_urls(data)
     # filename = "links.json"
     # secure_data(data, filename)
+    print(f"\nReturned: {len(data)}\n", data)
     return data
 
 # Run
