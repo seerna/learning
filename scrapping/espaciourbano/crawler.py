@@ -14,6 +14,11 @@ def fetch_data():
 
     return full_data
 
+def save_data(data):
+    filename = "crawler_data/filtered_data.json"
+    with open(filename, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+    print('Data saved to', filename)
 
 def find_keys(full_data):
     key_list = full_data[0].keys()
@@ -59,6 +64,22 @@ def get_links(data):
         urls.append(url_base + code)
     return urls
 
+def print_links(data):
+    links = get_links(data)
+    for link in links:
+        print(link)
+
+def save_links(data):
+    urls = []
+    links = get_links(data)
+    for link in links:
+        urls.append(link)
+    filename = "crawler_data/filtered_links.json"
+    with open(filename, 'w', encoding='utf-8') as file:
+        json.dump(urls, file, ensure_ascii=False, indent=4)
+    print('Data saved to', filename)
+
+
 def main():
     full_data = fetch_data()
 
@@ -66,21 +87,22 @@ def main():
     # find_items(full_data)
 
     properties = ["Apartamento", "Apartaestudio", "Finca"]
-    # cities = ["Medellin Zona 4 - Belen", "Medellin Zona 3 - Laureles", "Medellin Zona 2 - El Poblado"]
-    cities = ["Sabaneta"]
+    cities = ["Medellin Zona 3 - Laureles", "Medellin Zona 2 - El Poblado"]
+
     price_cap = 1000000
 
-    # filtered_data = findby_key(full_data, "Tipo propiedad", properties)
+    filtered_data = findby_key(full_data, "Tipo propiedad", properties)
     filtered_data = findby_key(full_data, "Ciudad", cities)
-    # filtered_data = filterby_price(filtered_data, price_cap)
+    filtered_data = filterby_price(filtered_data, price_cap)
+    
+    # find_items(filtered_data, "Barrio / Sector")
 
-    find_items(filtered_data, "Ciudad")
+    # print_links(filtered_data)
 
     print("\n" + str(len(filtered_data)), "available properties.\n")
+    save_data(filtered_data)
+    save_links(filtered_data)
 
-    links = get_links(filtered_data)
-    for link in links:
-        print(link)
 
 if __name__ == "__main__":
     main()
