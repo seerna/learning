@@ -1,6 +1,6 @@
 import json
 import requests
-# import scrappy_urls
+import scrappy_urls
 from bs4 import BeautifulSoup
 
 def connection(url):
@@ -12,31 +12,23 @@ def make_soup(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
     return soup
 
-# Start modifying the original
-
 def get_areas(soup):
     '''
     Get the areas links to look for inside a type of contract. e. g. Medellin, Bello, Itagui, etc'''
     links = soup.find_all(class_="w3-btn w3-white w3-border w3-round-large")
     links = [tag.parent['href'] for tag in links]
-    
-    # print(areas)
-    return links
 
+    return links
 
 def fetch_codes(soup):
     codes = []
     data = []
 
     areas_links = get_areas(soup)
-
-    # for areas in areas_links:
-    #     codes_list = get_everything(areas)
-    #     codes.append(codes_list)
     
     for areas in areas_links:
         codes_list = get_everything(areas)
-        print(f"Appending {len(codes_list)} entries.")
+        print(f"  - Appending {len(codes_list)} entries.")
         codes.append(codes_list)
 
     for sublist in codes:
@@ -44,6 +36,7 @@ def fetch_codes(soup):
 
     return data
 
+# Is this even needed? I think we can delete it
 def get_everything(areas):
     codes = []
     data = []
@@ -65,7 +58,6 @@ def get_entire_area(area):
     current_page = 0
     
     current_area = area.split("nCiudad=")[1]
-    print("\nScrapping", current_area)
 
     url = "https://www.espaciourbano.com/" + area
     html_content = connection(url)
@@ -73,6 +65,10 @@ def get_entire_area(area):
     pages_element = soup.find('a', string=lambda text: text and 'Página' in text)
     pages = pages_element.get_text()
     page_amount = int(pages.split("/ ")[1])
+
+    print("\nScrapping", current_area)
+    print("  - {area}")
+    
 
     while current_page < page_amount:
         new_url = "https://www.espaciourbano.com/" + area + "&offset=" + str(offset)
@@ -83,6 +79,7 @@ def get_entire_area(area):
         # 1. append codes
         # 2. go to next page
         property_links = soup.find_all(class_="btn btn-primary")
+        print(f"    - {current_page + 1} / {page_amount}")
 
         for item in property_links:
             link = item['href']
@@ -104,14 +101,17 @@ def secure_data(data, filename):
     print('Data saved to', filename)
 
 def main():
-    url = "https://www.espaciourbano.com/listado_arriendos.asp?sZona=1"
+    urls = scrappy_urls.main()
 
     codes = [] # Will be a list of lists
     data = [] # Will be a pure list
 
-    html_content = connection(url)
-    soup = make_soup(html_content)
-    codes.append(fetch_codes(soup))
+    for url in urls:
+        print("\nCurrent URL: ", url)
+
+        html_content = connection(url)
+        soup = make_soup(html_content)
+        codes.append(fetch_codes(soup))
     
     # Extending, as above loop returns a list of lists. This returns a single list
     for sublist in codes:
@@ -120,6 +120,7 @@ def main():
     # Uncomment to save codes in file
     # filename = "codes.json"
     # secure_data(data, filename)
+
 
     print("Returned", len(data), "entries.")
 
