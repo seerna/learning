@@ -79,7 +79,8 @@ def get_entire_area(area):
     print("  - {area}")
     
 
-    while current_page < page_amount:
+    # while current_page < page_amount: # Use this one to get the entirely of entries
+    while current_page < 10 and current_page < page_amount: # Use this one to only get a max of n pages
         print(f"    - {current_page + 1} / {page_amount}")
 
         new_url = "https://www.espaciourbano.com/" + area + "&offset=" + str(offset)
