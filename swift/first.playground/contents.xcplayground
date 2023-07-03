@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='01_variables&amp;constants'/>
+        <page name='02_datatypes'/>
+        <page name='03_conditional_statements'/>
+        <page name='04_switch_statement'/>
+        <page name='05_arrays'/>
+        <page name='06_dictionaries'/>
+        <page name='07_loops'/>
+        <page name='08_optionals'/>
+    </pages>
+</playground>
