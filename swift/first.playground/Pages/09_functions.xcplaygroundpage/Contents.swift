@@ -35,7 +35,7 @@ main()
 
 // Taken from swift docs, function with multiple returns
 
-func minMax(array: [Int]) -> (min: Int, max: Int) { // The declaration defined the name of the values that will be returnes: 'min' & 'max' in our case.
+func minMax(array: [Int]) -> (min: Int, max: Int) { // The declaration defined the names of the values that will be returned: 'min' & 'max' in our case.
     var currentMin = array[0]
     var currentMax = array[0]
     for value in array[1..<array.count] {
